@@ -6,12 +6,23 @@ public class Main extends Exception {
 
 
     public static void main(String[] args) {
+//        for (int i =0; i<args.length; i++){
+//            System.out.println(i +" => " + args[i]);
+//        }
+//        System.exit(0);
 
-        String folderPath = "/Users/munirismoilov/Desktop/25svadb";
-        File file = new File(folderPath);
-        Node root = new Node(file);
+        for (String arg : args){
+            System.out.println(">>"+ arg + "<<");
+        }
+
+        ParameterBag parameterBag = new ParameterBag(args);
+        long sizeLimit = parameterBag.getLimit();
+
+        File file = new File(parameterBag.getPath());
+        Node root = new Node(file, sizeLimit);
 
         long start = System.currentTimeMillis();
+
         FolderSizeCalculator calculator = new FolderSizeCalculator(root);
         ForkJoinPool pool = new ForkJoinPool();
        pool.invoke(calculator);

@@ -20,6 +20,7 @@ public class SizeCalculator {
     // 235K = 240640
     public static long getSizeFromHumanReadable(String size) {
 
+
         char sizeFactor = size
                 .replaceAll("[0-9\\s+]+", "")
                 .charAt(0);
